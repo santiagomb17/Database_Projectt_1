@@ -12,7 +12,8 @@ CREATE_TABLE PLAYERS(
  	SKILL_LEVEL	INT,
 	POSITION	INT,	--there's a finite amount of positions and this is my interpretation, feel free to change data type
 	SALARY		DECIMAL(7,2)	NOT NULL, --decimal declaration is not 100% sure
-	PRIMARY KEY(NAME));
+	PRIMARY KEY(NAME)
+	FOREIGN KEY REFERENCES TEAMS(CAPTAIN));
 
 CREATE_TABLE GAMES(
 	SCORE		INT		NOT NULL,
@@ -20,13 +21,13 @@ CREATE_TABLE GAMES(
 	DATE		DATE		NOT NULL, --check if 'DATE' is the correct data type
 	TIME		TIME, --again, check if 'TIME' is the correct date type
 	HOST_NAME	VARCHAR		NOT NULL,
-	REFERENCES 	TEAMS(NAME)); --make sure this is the correct syntax/semantics
+	FOREIGN KEY REFERENCES 	TEAMS(NAME)); --make sure this is the correct syntax/semantics
 
 CREATE_TABLE INJURY_TABLE(
 	INJURY_TYPE	INT	NOT NULL, --assuming injury types are finite
 	INJURY_DATE	DATE	NOT NULL, --date that the injury occurred
 	NAME_OF_INJURED	VARCHAR	NOT NULL, --adding this so that it can be referenced
-	REFERENCES	PLAYERS(NAME));
+	FOREIGN KEY REFERENCES	PLAYERS(NAME));
 
 
 	
